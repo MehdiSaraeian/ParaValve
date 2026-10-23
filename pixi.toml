@@ -1,0 +1,37 @@
+# Pixi workspace for ParaValve. See Pixi_Installation.md for setup instructions.
+#
+# Versions follow the Dockerfile and environment.yml: Python 3.8 and the
+# FEniCS 2019.1 stack, plus the tIGAr/ShNAPr/VarMINT/CouDALFISh libraries.
+
+[workspace]
+name = "ParaValve"
+channels = ["conda-forge"]
+platforms = ["linux-64"]
+
+[dependencies]
+# FEniCS 2019.1 is only built for Python 3.8 on conda-forge.
+python = "3.8.*"
+fenics = "2019.1.*"
+mpich = "*"
+mpi4py = "*"
+petsc4py = "*"
+numpy = "*"
+scipy = "1.5.*"
+networkx = "2.5.*"
+pulp = "2.7.*"
+meshio = "*"
+
+[pypi-dependencies]
+singledispatch = "==3.7.0"
+tigar = { git = "https://github.com/MehdiSaraeian/tIGAr.git", rev = "32c7f0296fb171a5a8dc91ea3120218f85630a19" }
+varmint = { git = "https://github.com/MehdiSaraeian/VarMINT.git" }
+coudalfish = { git = "https://github.com/MehdiSaraeian/CouDALFISh.git" }
+shnapr = { git = "https://github.com/MehdiSaraeian/ShNAPr.git" }
+# TSFC form compiler, used by default (ParaValve.py --no-use-tsfc turns it off).
+tsfc = { git = "https://github.com/blechta/tsfc.git", tag = "2018.1.0" }
+finat = { git = "https://github.com/blechta/FInAT.git", tag = "2018.1.0" }
+coffee = { git = "https://github.com/blechta/COFFEE.git", tag = "2018.1.0" }
+
+[tasks]
+check = "python -c \"import dolfin, VarMINT, SalaMANdER, CouDALFISh, tIGAr, ShNAPr; print('ParaValve environment OK')\""
+preprocess = "cd ParaValve && python Preprocessing.py --mesh-folder ./aorta/mesh-16mm/ --valve-folder ./valves/BHV-16mm/ --valve-smesh-suffix .txt"
