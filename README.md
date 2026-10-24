@@ -25,7 +25,8 @@ The ParaValve framework provides a pipeline for simulating heart valve function 
 ## How to install (user)
 
 1. **Using Docker (Recommended for most users):** This method provides a containerized environment with all dependencies pre-installed. See the [Docker Installation Guide](Docker_Installation.md) for detailed instructions.
-2. **Using Conda (For users familiar with Conda environments):** This method involves setting up a Conda environment from the provided `environment.yml` file. See the [Conda Environment Setup Guide](Conda_Installation.md) for detailed instructions.
+2. **Using Pixi (Reproducible, no container needed):** This method installs the full FEniCS 2019.1 stack and the custom libraries (tIGAr, ShNAPr, VarMINT, CouDALFISh) from the provided `pixi.toml` and `pixi.lock` (Linux x86-64 only). See the [Pixi Environment Setup Guide](Pixi_Installation.md) for detailed instructions.
+3. **Using Conda (For users familiar with Conda environments):** This method involves setting up a Conda environment from the provided `environment.yml` file. See the [Conda Environment Setup Guide](Conda_Installation.md) for detailed instructions.
 
 ---
 
